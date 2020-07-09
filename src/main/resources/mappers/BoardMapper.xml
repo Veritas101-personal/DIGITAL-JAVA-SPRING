@@ -9,4 +9,15 @@
   <select id="getBoard" resultType="kr.cjgreen.spring.vo.BoardVo">
     select * from board where num = #{num}
   </select>
+  <update id="increaseViews">
+  	update board
+		set
+			views = views + 1
+		where
+			num = #{num};
+  </update>
+  <insert id="registerBoard">
+  	insert into board(title, writer, contents)
+  	values(#{title},#{writer},#{contents})
+  </insert>
 </mapper>

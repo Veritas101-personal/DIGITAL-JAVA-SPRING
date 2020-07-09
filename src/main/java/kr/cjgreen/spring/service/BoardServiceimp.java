@@ -25,5 +25,17 @@ public class BoardServiceimp implements BoardService{
 		// TODO Auto-generated method stub
 		return boardDao.getBoard(num);
 	}
+
+	@Override
+	public void increaseViews(Integer num) {
+		boardDao.increaseViews(num);
+		
+	}
+
+	@Override
+	public void registerBoard(BoardVo board) {
+		boardDao.registerBoard(board);
+		
+	}
 	
 }

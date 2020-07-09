@@ -39,8 +39,27 @@ public class BoardController {
 	    
 	    if(num != null) {
 	    	board = boardService.getBoard(num);
-	    	System.out.println(board);
+	    	mv.addObject("board",board);
+	    	if(board != null) {
+	    		boardService.increaseViews(num);
+	    		board.setViews(board.getViews()+1);
+	    	}
 	    }
+	    return mv;
+	}
+	
+	@RequestMapping(value = "/board/register", method = RequestMethod.GET)
+	public ModelAndView boardRegisterGet(ModelAndView mv) {
+		logger.info("URI:/board/register:GET");
+	    mv.setViewName("/board/register");
+	    return mv;
+	}
+	
+	@RequestMapping(value = "/board/register", method = RequestMethod.POST)
+	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVo board) {
+		logger.info("URI:/board/register:POST");
+	    mv.setViewName("redirect:/board/list");
+	    boardService.registerBoard(board);
 	    return mv;
 	}
 	
