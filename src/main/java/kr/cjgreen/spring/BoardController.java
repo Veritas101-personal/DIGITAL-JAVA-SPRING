@@ -63,4 +63,35 @@ public class BoardController {
 	    return mv;
 	}
 	
+	@RequestMapping(value = "/board/modify", method = RequestMethod.GET)
+	public ModelAndView boardModifyGet(ModelAndView mv, Integer num) {
+		logger.info("URI:/board/modify:GET");
+	    mv.setViewName("/board/modify");
+	    BoardVo board=null;
+	    if (num != null) {
+	    	board = boardService.getBoard(num);
+	    }
+	    mv.addObject("board",board);  
+	    return mv;
+	}
+	
+	@RequestMapping(value = "/board/modify", method = RequestMethod.POST)
+	public ModelAndView boardModifyPost(ModelAndView mv, BoardVo board) {
+		logger.info("URI:/board/modify:POST");
+	    mv.setViewName("redirect:/board/list");
+	    boardService.updateBoard(board);
+	    
+	    return mv;
+	}
+	
+	@RequestMapping(value = "/board/delete", method = RequestMethod.GET)
+	public ModelAndView boardDelete(ModelAndView mv, BoardVo board) {
+		logger.info("URI:/board/delete");
+	    mv.setViewName("redirect:/board/list");
+	   
+	    boardService.deleteBoard(board);
+	    
+	    return mv;
+	}
+	
 }

@@ -5,6 +5,7 @@
 <mapper namespace="kr.cjgreen.spring.dao.BoardDao">
   <select id="getBoardList" resultType="kr.cjgreen.spring.vo.BoardVo">
     select * from board
+    where isDel = 'N'
   </select>
   <select id="getBoard" resultType="kr.cjgreen.spring.vo.BoardVo">
     select * from board where num = #{num}
@@ -18,6 +19,22 @@
   </update>
   <insert id="registerBoard">
   	insert into board(title, writer, contents)
-  	values(#{title},#{writer},#{contents})
+  	values(#{board.title},#{board.writer},#{board.contents})
   </insert>
+  <update id="updateBoard">
+  update board
+  	set
+  		title = #{board.title},
+  		contents = #{board.contents}
+  	where
+  		num = #{board.num}
+  </update>
+  <update id="deleteBoard">
+  update board
+  	set
+  		isDel = 'Y',	
+  		delDate = now()
+  	where
+  		num = #{board.num}
+  </update>
 </mapper>

@@ -37,5 +37,18 @@ public class BoardServiceimp implements BoardService{
 		boardDao.registerBoard(board);
 		
 	}
+
+	@Override
+	public void updateBoard(BoardVo board) {
+		boardDao.updateBoard(board);
+		
+		
+	}
+
+	@Override
+	public void deleteBoard(BoardVo board) {
+		// TODO Auto-generated method stub
+		boardDao.deleteBoard(board);
+	}
 	
 }
