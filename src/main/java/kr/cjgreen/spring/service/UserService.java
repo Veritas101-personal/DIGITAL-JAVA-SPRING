@@ -1,7 +1,21 @@
 package kr.cjgreen.spring.service;
 
-public interface UserService {
-	public String getPw(String id);
+import javax.servlet.http.HttpServletRequest;
 
-	public int getCount();
+import kr.cjgreen.spring.vo.UserVo;
+
+public interface UserService {
+
+	boolean signup(UserVo user);
+
+	UserVo isSignin(UserVo user);
+
+	UserVo getUser(HttpServletRequest request);
+
+	UserVo getUser(String id);
+
+	void newPw(String id, String newPw);
+
+	
+	
 }

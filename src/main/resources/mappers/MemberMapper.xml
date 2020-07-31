@@ -3,10 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.cjgreen.spring.dao.UserDao">
-  <select id="getPw" resultType="String">
-    select pw from user where id = #{id}
+  <select id="getUser" resultType="kr.cjgreen.spring.vo.UserVo">
+    select * from user where id = #{id}
   </select>
-  <select id="getCount" resultType="int">
-  	select count(*) from user
-  </select>
+  <insert id="insertUser">
+  	insert into
+  		user(id,password,email,gender)
+  		values(#{user.id},#{user.password},#{user.email},#{user.gender})
+  </insert>
+  <update id="updatePw">
+  	update user
+  		set password = #{user.password}
+  		where id = #{user.id};
+  </update>
 </mapper>
